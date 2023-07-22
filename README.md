@@ -10,4 +10,5 @@ This has the link to the all time fav 5 retro games!!! which are -
 4.Super Mario 
 
 5.Pokemon Fire Red
-                   The Contributors-  Debarghya Saha, Hrivu Basu Roy and Lokesh Ghosh
+
+The Contributors-  Debarghya Saha, Hrivu Basu Roy and Lokesh Ghosh
