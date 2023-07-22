@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MINTENDO TWITCH</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <title>MINTENDO</title>
+    <style>
+       *{
+            margin: 0;
+            padding:10px;
+        }
+        body {
+            background-color: black;
+            font-family: 'VT323', monospace;
+        }
+
+        .tv-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .tv {
+            position: relative;
+            width: 960px;
+            height: 540px;
+            border: 20px solid #808080;
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.8);
+        }
+
+        .tv:before {
+            content: "";
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            border: 10px solid rgba(0, 0, 0, 0.5);
+        }
+
+        .tv:after {
+            content: "";
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            right: 15px;
+            bottom: 15px;
+            border: 5px solid rgba(0, 0, 0, 0.5);
+        }
+
+        .screen {
+            background-color: #000080;
+            background-image: url('bg.jpg');
+            background-repeat: no-repeat;
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            right: 30px;
+            bottom: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .game-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+            color: white;
+            transition: transform 0.2s ease-in-out;
+            position: relative;
+            z-index: 1;
+            border-top: 5px solid brown;
+            border-bottom: 5px solid brown;
+            border-left: 5px solid brown;
+            border-right: 5px solid brown;
+        }
+
+        .game-card:hover {
+            transform: scale(1.2);
+        }
+
+        .game-card img {
+            width: 60px;
+            height: 70px;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            font-size: 60px;
+            text-align: center;
+        }
+        h3{
+            text-align: center;
+        }
+        h2{
+            text-align: center;
+          }
+
+        audio {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="color: gold;">RETRO GAME CONSOLE</h1>
+    <h3 style="color: red;">Creators:   Debarghya Saha || Hrivu Basu Roy || Lokesh Ghosh </h3>
+    <h3 style="color: white;">Courtesy:   Meghnad Saha Institute Of Technology  Dept: Computer Science & Business System </h3>
+    <audio controls autoplay loop>
+        <source src="menu.mp3" type="audio/mp3">
+    </audio> 
+
+    <div class="tv-container">
+        <div class="tv">
+            <div class="screen">
+                <div class="game-card">
+                    <a href="game1.html"><img src="MARIOGAMECARD.jpeg" alt="Game 1"></a>
+                    <h2>MARIO</h2>
+                </div>
+                <div class="game-card">
+                    <a href="game2.html"><img src="CONTRAGAMECARD.jpeg" alt="Game 2"></a>
+                    <h2>CONTRA</h2>
+                </div>
+                <div class="game-card">
+                    <a href="game3.html"><img src="GALAXIANGAMECARD.jpeg" alt="Game 3"></a>
+                    <h2>GALAXIAN</h2>
+                </div>
+                <div class="game-card">
+                    <a href="game4.html"><img src="POKEMONGAMECARD.jpeg" alt="Game 4"></a>
+                    <h2>POKEMON</h2>
+                </div>
+                <div class="game-card">
+                    <a href="game5.html"><img src="PACMANGAMECARD.jpeg" alt="Game 5"></a>
+                    <h2>PAC-MAN</h2>
+                </div>
+                
+                <h2 style="color: gold;" >CHOOSE A GAME TO CONTINUE...</h2>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MARIO</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 10px;
+        }
+
+        body {
+            background-color: black;
+            font-family: 'VT323', monospace;
+        }
+
+        .tv-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .tv {
+            position: relative;
+            width: 960px;
+            height: 540px;
+            border: 20px solid #808080;
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.8);
+            overflow: hidden;
+        }
+
+        .tv:before {
+            content: "";
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            border: 10px solid rgba(0, 0, 0, 0.5);
+        }
+
+        .tv:after {
+            content: "";
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            right: 15px;
+            bottom: 15px;
+            border: 5px solid rgba(0, 0, 0, 0.5);
+        }
+
+        .screen-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 200%; /* Set the width to accommodate multiple slides */
+            height: 100%;
+            display: flex;
+            transition: transform 0.5s ease-in-out; /* Transition for manual sliding effect */
+            transform: translateX(0%); /* Initialize at the first slide */
+        }
+
+        .screen {
+            background-color: #000080;
+            background-image: url('https://i.ytimg.com/vi/uxxOCfOEN3k/maxresdefault.jpg');
+            flex: 1;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            opacity: 1;
+        }
+
+        .screen.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .game-info {
+            flex: 0 0 45%;
+            color: white;
+            display: none;
+            z-index: 2; /* Adjust z-index for text layer */
+        }
+
+        .screen.active .game-info.active {
+            display: block;
+        }
+
+        .game-info h2 {
+            font-size: 30px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .game-info p {
+            font-size: 25px;
+            text-align: left;
+        }
+
+        .game-image {
+            flex: 0 0 45%;
+            position: relative;
+            z-index: 3; /* Move the game image to the first layer */
+        }
+
+        .game-image img {
+            width: 100%;
+            height: auto;
+            border: 5px solid brown;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            cursor:pointer; /* Add cursor pointer to indicate it's clickable */
+        }
+
+        h1 {
+            font-size: 60px;
+            text-align: center;
+            color: gold;
+        }
+
+        audio {
+            display: none;
+        }
+
+        .slider-button {
+            position: absolute;
+            top: 50%;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.3);
+            color: white;
+            border: none;
+            font-size: 24px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+            z-index: 2;
+        }
+
+        .slider-button:hover {
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .slider-button.left {
+            left: 10px;
+            z-index: 4; /* Move the left button to the top layer */
+        }
+
+        .slider-button.right {
+            right: 10px;
+            z-index: 4; /* Move the right button to the top layer */
+        }
+
+        /* Style the hyperlink button */
+        .hyperlink-button {
+            display: block;
+            width: 200px;
+            margin: 10px auto;
+            background-color: #ff3333; /* Pokemon Fire Red look */
+            color: white;
+            padding: 15px 20px; /* Increased padding for larger button size */
+            text-align: center;
+            text-decoration: none;
+            font-size: 24px; /* Larger font size */
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out; /* Transition for hover effect */
+            position: relative; /* Add position property */
+            z-index: 1; /* Set z-index to place on top of the TV frame and behind the text layer */
+        }
+
+        .hyperlink-button:hover {
+            background-color: #cc0000; /* Darker red on hover */
+            transform: scale(1.2); /* Slightly increase size on hover */
+        }
+    </style>
+</head>
+<body>
+    <h1>RETRO GAME CONSOLE</h1>
+    <!-- Add background audio -->
+    <audio class="bg-music" autoplay loop>
+        <source src="mario.mp3" type="audio/mp3">
+    </audio> 
+
+    <div class="tv-container">
+        <div class="tv">
+            <div class="screen-container" id="slider-container">
+                <!-- First Slide -->
+                <div class="screen active">
+                    <div class="game-info active">
+                        <h1 style="color:#fcff33">SUPER MARIO</h1>
+                        <p align="center" style="color:whitesmoke">Mario, a beloved video game character created by Shigeru Miyamoto, made his debut in 1981's "Donkey Kong." Originally known as "Jumpman," Mario's popularity surged in 1985 with the release of "Super Mario Bros." on the Nintendo Entertainment System (NES). </p>
+                    </div>
+                    <div class="game-image">
+                        <!-- Linked image -->
+                    
+                    </div>
+                </div>
+
+                <!-- Second Slide (Replica of the First Slide) -->
+                <div class="screen active">
+                    <div class="game-info">
+                        
+                        <p style="color: greenyellow"> The Mario franchise diversified to sports, racing, and RPG genres with games like "Mario Kart" and "Super Mario RPG." Mario's legacy remains unparalleled, influencing gaming culture and becoming Nintendo's mascot, symbolizing joy and timeless fun.</p>
+                        <h2>Mario jumping here==></h2>
+                        <!-- Click to Play button as a hyperlink -->
+                        
+                    </div>
+                    <div class="game-image">
+                        <!-- Linked image -->
+                        <img src="mariosticker.png" alt="game" style="width:180px;height: 225px;">
+                    </div>
+                </div>
+            </div>
+            
+            <button class="slider-button left" onclick="moveSlide(-1)">&#10094;</button>
+            <button class="slider-button right" onclick="moveSlide(1)">&#10095;</button>
+        </div>
+    </div>
+    <a class="hyperlink-button" href="https://myemulator.online/gameboy/super-mario-bros-deluxe" target="_blank">SMASH HERE TO PLAY THE GAME!</a>
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.screen');
+        const sliderContainer = document.getElementById('slider-container');
+
+        function moveSlide(offset) {
+            currentSlide = (currentSlide + offset + slides.length) % slides.length;
+            sliderContainer.style.transform = `translateX(-${currentSlide * 50}%)`;
+
+            // Show/hide the game-info based on the current slide
+            slides.forEach((slide, index) => {
+                const gameInfo = slide.querySelector('.game-info');
+                if (index === currentSlide) {
+                    gameInfo.style.display = 'block';
+                } else {
+                    gameInfo.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

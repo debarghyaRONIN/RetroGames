@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><PAC-MAN></PAC-MAN></title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 10px;
+        }
+
+        body {
+            background-color: black;
+            font-family: 'VT323', monospace;
+        }
+
+        .tv-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .tv {
+            position: relative;
+            width: 960px;
+            height: 540px;
+            border: 20px solid #808080;
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.8);
+            overflow: hidden;
+        }
+
+        .tv:before {
+            content: "";
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            border: 10px solid rgba(0, 0, 0, 0.5);
+        }
+
+        .tv:after {
+            content: "";
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            right: 15px;
+            bottom: 15px;
+            border: 5px solid rgba(0, 0, 0, 0.5);
+        }
+
+        .screen-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 200%; /* Set the width to accommodate multiple slides */
+            height: 100%;
+            display: flex;
+            transition: transform 0.5s ease-in-out; /* Transition for manual sliding effect */
+            transform: translateX(0%); /* Initialize at the first slide */
+        }
+
+        .screen {
+            background-color: #000080;
+            background-image: url('pacmanfinalbg.jpg');
+            flex: 1;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            opacity: 1;
+        }
+
+        .screen.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .game-info {
+            flex: 0 0 45%;
+            color: white;
+            display: none;
+            z-index: 2; /* Adjust z-index for text layer */
+        }
+
+        .screen.active .game-info.active {
+            display: block;
+        }
+
+        .game-info h2 {
+            font-size: 30px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .game-info p {
+            font-size: 25px;
+            text-align: left;
+        }
+
+        .game-image {
+            flex: 0 0 45%;
+            position: relative;
+            z-index: 3; /* Move the game image to the first layer */
+        }
+
+        .game-image img {
+            width: 100%;
+            height: auto;
+            border: 5px solid brown;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            cursor: pointer; /* Add cursor pointer to indicate it's clickable */
+        }
+
+        h1 {
+            font-size: 60px;
+            text-align: center;
+            color: gold;
+        }
+
+        audio {
+            display: none;
+        }
+
+        .slider-button {
+            position: absolute;
+            top: 50%;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.3);
+            color: white;
+            border: none;
+            font-size: 24px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+            z-index: 2;
+        }
+
+        .slider-button:hover {
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .slider-button.left {
+            left: 10px;
+            z-index: 4; /* Move the left button to the top layer */
+        }
+
+        .slider-button.right {
+            right: 10px;
+            z-index: 4; /* Move the right button to the top layer */
+        }
+
+        /* Style the hyperlink button */
+        .hyperlink-button {
+            display: block;
+            width: 200px;
+            margin: 10px auto;
+            background-color: #ff3333; /* Pokemon Fire Red look */
+            color: white;
+            padding: 15px 20px; /* Increased padding for larger button size */
+            text-align: center;
+            text-decoration: none;
+            font-size: 24px; /* Larger font size */
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out; /* Transition for hover effect */
+            position: relative; /* Add position property */
+            z-index: 3; /* Set z-index to place on top of the TV frame and behind the text layer */
+        }
+
+        .hyperlink-button:hover {
+            background-color: #cc0000; /* Darker red on hover */
+            transform: scale(1.1); /* Slightly increase size on hover */
+        }
+    </style>
+</head>
+<body>
+    <h1>RETRO GAME CONSOLE</h1>
+    <!-- Add background audio -->
+    <audio class="bg-music" autoplay loop>
+        <source src="Pac-Man.mp3" type="audio/mp3">
+    </audio> 
+
+    <div class="tv-container">
+        <div class="tv">
+            <div class="screen-container" id="slider-container">
+                <!-- First Slide -->
+                <div class="screen active">
+                    <div class="game-info active">
+                        <h1>PAC-MAN</h1>
+                        <p style="color:red">Pac-Man, created by Namco and released in 1980, is an iconic arcade game designed by Toru Iwatani. It revolutionized the gaming industry, becoming one of the most successful and enduring franchises. Players control Pac-Man, a yellow character tasked with navigating a maze while consuming dots and evading ghosts—Blinky, Pinky, Inky, and Clyde. </p>
+                    </div>
+                    <div class="game-image">
+                        <!-- Linked image -->
+                        
+                    </div>
+                </div>
+
+                <!-- Second Slide (Replica of the First Slide) -->
+                <div class="screen active">
+                    <div class="game-info">
+                        
+                        <p style="color:cyan">Eating Power Pellets grants temporary ghost-eating abilities. The game's simplicity, innovative gameplay, and memorable characters contributed to its immense popularity. Pac-Man transcended the arcade, spawning numerous sequels, spin-offs, and adaptations across various platforms. It has become a pop culture icon, leaving an indelible mark on gaming history, inspiring merchandise, and influencing subsequent generations of games.</p>
+                        <!-- Click to Play button as a hyperlink -->
+                        <h2>Pac-man Ghost BLINKY!==></h2>
+                    </div>
+                    <div class="game-image">
+                        <!-- Linked image -->
+                        
+                        <img src="pacmansticker.png" alt="Game 2" style="width:180px;height: 225px;">
+                    </div>
+                </div>
+            </div>
+
+            <button class="slider-button left" onclick="moveSlide(-1)">&#10094;</button>
+            <button class="slider-button right" onclick="moveSlide(1)">&#10095;</button>
+        </div>
+    </div>
+    <a class="hyperlink-button" href="https://myemulator.online/nes/pac-man" target="_blank">SMASH HERE TO PLAY THE GAME!</a>
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.screen');
+        const sliderContainer = document.getElementById('slider-container');
+
+        function moveSlide(offset) {
+            currentSlide = (currentSlide + offset + slides.length) % slides.length;
+            sliderContainer.style.transform = `translateX(-${currentSlide * 50}%)`;
+
+            // Show/hide the game-info based on the current slide
+            slides.forEach((slide, index) => {
+                const gameInfo = slide.querySelector('.game-info');
+                if (index === currentSlide) {
+                    gameInfo.style.display = 'block';
+                } else {
+                    gameInfo.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
